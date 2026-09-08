@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parvin's Project Ideas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #14213D;
+      --bg-soft: #1B2C4D;
+      --saffron: #E8973A;
+      --paper: #F3EEE3;
+      --slate: #8FA0BF;
+      --rule: #2B3C60;
+      --accent-gupshup: #155E56;
+      --accent-sikhi: #E8973A;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--paper);
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    body {
+      padding: 5rem 1.5rem 6rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-section {
+      margin-bottom: 5rem;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.75rem;
+      color: var(--paper);
+    }
+
+    .tagline {
+      font-size: 1.15rem;
+      line-height: 1.65;
+      max-width: 55ch;
+      color: var(--slate);
+      margin: 0 0 2.5rem;
+    }
+
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--paper);
+      margin: 3.5rem 0 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .projects-detailed {
+      margin-bottom: 4rem;
+    }
+
+    .project-detail {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 1.5rem;
+      padding: 2.75rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .project-detail:last-of-type {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .tag {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.1rem;
+      color: var(--saffron);
+      padding-top: 0.15rem;
+    }
+
+    .project-content h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin: 0 0 0.75rem;
+      color: var(--paper);
+    }
+
+    .desc {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--paper);
+      max-width: 54ch;
+      margin: 0 0 1.1rem;
+    }
+
+    .why {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--slate);
+      max-width: 54ch;
+      margin: 0 0 1.1rem;
+      padding-left: 0.9rem;
+      border-left: 2px solid var(--rule);
+    }
+
+    .why b {
+      color: var(--saffron);
+      font-weight: 500;
+    }
+
+    .explorations-note {
+      margin-bottom: 4rem;
+      padding: 0;
+    }
+
+    .variations {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .variations-label {
+      font-size: 0.85rem;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .links-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .variation-link {
+      display: block;
+      padding: 0.6rem 1rem;
+      background: rgba(232, 151, 58, 0.08);
+      border: 1px solid rgba(232, 151, 58, 0.2);
+      border-radius: 4px;
+      color: var(--paper);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .variation-link:hover {
+      background: rgba(232, 151, 58, 0.15);
+      border-color: var(--saffron);
+      color: var(--saffron);
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.85rem;
+      color: var(--slate);
+      text-align: center;
+    }
+
+    @media (max-width: 620px) {
+      body {
+        padding: 3.5rem 1.25rem 4rem;
+      }
+      .section-title {
+        font-size: 1.1rem;
+        margin: 2.5rem 0 1.5rem;
+      }
+      .project-detail {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+        padding: 2rem 0;
+      }
+      .links-list {
+        grid-template-columns: 1fr;
+      }
+      .intro {
+        margin-bottom: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="hero-section">
+    <h1>Three things I'm building</h1>
+    <p class="tagline">One for the body, one for the tradition, one for the tongue — each solving a problem I ran into with my own family first.</p>
+  </div>
+
+  <h2 class="section-title">All Three Projects</h2>
+
+  <div class="projects-detailed">
+    <!-- AI Fitness Coach -->
+    <div class="project-detail">
+      <div class="tag">fitness</div>
+      <div class="project-content">
+        <h2>AI Fitness Coach</h2>
+        <p class="desc">A coach that reads your training, sleep, and stress data daily, then adjusts the plan so you hit your goal without getting hurt. Marathon, swim, strength — you pick the goal, it bends the plan around a real, busy life, with a human coach approving the final call.</p>
+        <p class="why"><b>Why it's here too:</b> not Sikh-specific, but built on the same principle Gurmat teaches about the body — steady, sustainable discipline over short bursts of intensity.</p>
+      </div>
+    </div>
+
+    <!-- Gurbani / Sikhi Agent -->
+    <div class="project-detail">
+      <div class="tag">history</div>
+      <div class="project-content">
+        <h2>Gurbani / Sikhi Agent</h2>
+        <p class="desc">A single study portal for Khalsa Gurmat School kids, built only on verified historical Sikh sources — not whatever the open internet says. A kid can ask a question in plain language and get an answer traced back to the actual text it came from.</p>
+        <p class="why"><b>Why it matters for Sikh families:</b> Sikh history gets retold, flattened, and misquoted online more than most. Kids deserve a place that hands them the primary sources, not someone else's summary of them.</p>
+
+        <div class="variations">
+          <span class="variations-label">Design Variations for Gurbani / Sikhi Agent</span>
+          <div class="links-list">
+            <a href="sikhi/gurbani-agent-architecture.html" class="variation-link">Architecture</a>
+            <a href="sikhi/gurbani-agent-architecture-v2.html" class="variation-link">Architecture v2</a>
+            <a href="sikhi/gurbani-agent-mvp.html" class="variation-link">MVP</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gup Shup -->
+    <div class="project-detail">
+      <div class="tag">language</div>
+      <div class="project-content">
+        <h2>Gup Shup</h2>
+        <p class="desc">A game, not an assignment: small groups of kids who already know each other talk in Punjabi for a timed, moderated session, and earn points toward avatars. Built because my own kids will speak Punjabi with me but switch to English with each other.</p>
+        <p class="why"><b>Why it matters for Sikh families:</b> Punjabi isn't incidental to Sikhi — Gurbani lives in it. A kid who loses the spoken language loses a direct line to the Guru's word, not just a skill.</p>
+
+        <div class="variations">
+          <span class="variations-label">Design Variations for Gup Shup</span>
+          <div class="links-list">
+            <a href="gupshup/gup-shup-pitch-1page.html" class="variation-link">Pitch (1 page)</a>
+            <a href="gupshup/gup-shup-pitch-2page.html" class="variation-link">Pitch (2 page)</a>
+            <a href="gupshup/gup-shup-engagement-flywheel.html" class="variation-link">Engagement Flywheel</a>
+            <a href="gupshup/gup-shup-app-visuals.html" class="variation-link">App Visuals</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Parvin — Project Ideas & Explorations, September 2026</p>
+  </footer>
+</main>
+</body>
+</html>
