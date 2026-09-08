@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gurbani / Sikhi Agent — architecture v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14213D;
+    --node: #1B2C4D;
+    --node-border: #3A4E77;
+    --paper: #F3EEE3;
+    --slate: #A9B6CC;
+    --saffron: #E8973A;
+    --amber: #D97A3F;
+    --amber-bg: #2E2216;
+    --tool: #2B7A6B;
+    --gloss: #5B6FA0;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; background: var(--bg); font-family:'Work Sans', sans-serif; }
+  body { padding: 2.5rem 1rem 4rem; }
+  h1 { font-family:'Fraunces', serif; font-weight:600; color:var(--paper);
+       text-align:center; font-size: clamp(1.3rem, 3vw, 1.8rem); margin: 0 0 0.4rem; }
+  h2.section { font-family:'Fraunces', serif; font-weight:500; font-style: italic; color: var(--saffron);
+       text-align:left; font-size: 1.15rem; margin: 0.4rem 0 0.6rem 1rem; }
+  .wrap { max-width: 1500px; margin: 0 auto; }
+  svg text { font-family: 'Work Sans', sans-serif; fill: var(--paper); }
+  svg .title { font-family: 'Fraunces', serif; font-weight: 600; }
+  svg .sub { fill: var(--slate); font-size: 14.5px; }
+  svg .callout-title { fill: var(--saffron); font-weight: 600; font-size: 14.5px; }
+  svg .callout-body { fill: var(--slate); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Gurbani / Sikhi Agent — orchestrator + scoped retrieval tools</h1>
+<svg viewBox="0 0 1700 1520" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6B7FA6"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--amber)"/>
+    </marker>
+  </defs>
+
+  <!-- ===== TOP: overall architecture ===== -->
+  <rect x="520" y="30" width="480" height="90" rx="14" fill="var(--node)" stroke="var(--saffron)" stroke-width="2"/>
+  <text x="760" y="66" text-anchor="middle" class="title" font-size="20">Gurbani / Sikhi Agent</text>
+  <text x="760" y="90" text-anchor="middle" class="sub">[uber agent — the one reasoning loop]</text>
+
+  <rect x="1060" y="30" width="500" height="90" rx="10" fill="none" stroke="var(--node-border)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="1080" y="54" class="callout-title">role of the orchestrator</text>
+  <text x="1080" y="76" class="callout-body">Classifies intent · routes to the right tool(s) ·</text>
+  <text x="1080" y="95" class="callout-body">holds session state across turns</text>
+
+  <path d="M700,120 L200,255" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M740,120 L560,255" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M800,120 L940,255" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M840,120 L1240,255" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="60" y="255" width="280" height="84" rx="12" fill="var(--node)" stroke="var(--tool)" stroke-width="2"/>
+  <text x="200" y="290" text-anchor="middle" class="title" font-size="17">History</text>
+  <text x="200" y="312" text-anchor="middle" class="sub">tool — curated corpus</text>
+
+  <rect x="400" y="255" width="320" height="84" rx="12" fill="var(--node)" stroke="var(--saffron)" stroke-width="2.5"/>
+  <text x="560" y="288" text-anchor="middle" class="title" font-size="17">Gurbani Search</text>
+  <text x="560" y="308" text-anchor="middle" class="sub">tool — one semantic index, all banis</text>
+  <text x="560" y="326" text-anchor="middle" class="sub" fill="var(--saffron)">↓ expanded below</text>
+
+  <rect x="800" y="255" width="280" height="84" rx="12" fill="var(--node)" stroke="var(--tool)" stroke-width="2"/>
+  <text x="940" y="290" text-anchor="middle" class="title" font-size="17">Saakhi's</text>
+  <text x="940" y="312" text-anchor="middle" class="sub">tool — narrative/story corpus</text>
+
+  <rect x="1120" y="255" width="300" height="84" rx="12" fill="var(--amber-bg)" stroke="var(--amber)" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="1270" y="290" text-anchor="middle" class="title" font-size="17">Current Affairs</text>
+  <text x="1270" y="312" text-anchor="middle" class="sub">agent — live data, different tier</text>
+
+  <!-- callout under current affairs -->
+  <rect x="1120" y="375" width="300" height="150" rx="10" fill="var(--amber-bg)" stroke="var(--amber)" stroke-width="1.5"/>
+  <text x="1138" y="400" class="callout-title" fill="var(--amber)">different trust tier</text>
+  <text x="1138" y="424" class="callout-body">Can't be grounded in a fixed,</text>
+  <text x="1138" y="444" class="callout-body">vetted corpus like the rest.</text>
+  <text x="1138" y="470" class="callout-body">Needs live retrieval + its own</text>
+  <text x="1138" y="490" class="callout-body">moderation layer — hold for later.</text>
+
+  <!-- callout: why multi-scholar matters (top-level framing) -->
+  <rect x="60" y="375" width="1020" height="150" rx="10" fill="none" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="80" y="400" class="callout-title">why gur-baani gets special treatment</text>
+  <text x="80" y="424" class="callout-body">Sikhi has no single central authority on interpretation — scholars genuinely disagree on some shabads.</text>
+  <text x="80" y="444" class="callout-body">The portal shows that plainly: multiple attributed interpretations, not one AI-picked "correct" answer.</text>
+  <text x="80" y="464" class="callout-body">That also means gur-baani needs a heavier retrieval build than History or Saakhi's — see breakout below.</text>
+
+  <!-- MCP bar -->
+  <path d="M200,339 L200,555" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M940,339 L940,555" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M1270,339 L1270,555" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <rect x="60" y="555" width="1360" height="70" rx="14" fill="var(--node)" stroke="var(--saffron)" stroke-width="2"/>
+  <text x="740" y="586" text-anchor="middle" class="title" font-size="18">MCP layer</text>
+  <text x="740" y="608" text-anchor="middle" class="sub">publish these as MCP tools — pluggable into any MCP host</text>
+
+  <!-- ===== BREAKOUT: Gurbani Search internals ===== -->
+  <line x1="560" y1="339" x2="560" y2="700" stroke="var(--saffron)" stroke-width="1.5" stroke-dasharray="3 4"/>
+
+  <text x="80" y="700" class="title" font-size="20" fill="var(--saffron)">Gurbani Search — internals</text>
+
+  <!-- Row 1: canonical, gloss, tags, scholar store -->
+  <rect x="60" y="730" width="330" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="225" y="762" text-anchor="middle" class="title" font-size="16">Canonical text store</text>
+  <text x="225" y="784" text-anchor="middle" class="sub">Gurmukhi · ang · raag · author</text>
+  <text x="225" y="802" text-anchor="middle" class="sub">(the source of truth, always shown)</text>
+
+  <rect x="430" y="730" width="330" height="100" rx="12" fill="var(--node)" stroke="var(--gloss)" stroke-width="2"/>
+  <text x="595" y="762" text-anchor="middle" class="title" font-size="16">English gloss</text>
+  <text x="595" y="784" text-anchor="middle" class="sub">meaning-preserving, per shabad</text>
+  <text x="595" y="802" text-anchor="middle" class="sub" fill="var(--saffron)">search aid only — never shown as "the meaning"</text>
+
+  <rect x="800" y="730" width="300" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="950" y="762" text-anchor="middle" class="title" font-size="16">Concept tags</text>
+  <text x="950" y="784" text-anchor="middle" class="sub">haumai · naam · seva · hukam ...</text>
+  <text x="950" y="802" text-anchor="middle" class="sub">theme-level, cross-bani</text>
+
+  <rect x="1140" y="730" width="380" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="1330" y="758" text-anchor="middle" class="title" font-size="16">Scholar interpretations</text>
+  <text x="1330" y="780" text-anchor="middle" class="sub">Prof. Sahib Singh · Faridkot Teeka · others</text>
+  <text x="1330" y="798" text-anchor="middle" class="sub">multiple per shabad, each attributed</text>
+  <text x="1330" y="816" text-anchor="middle" class="sub" fill="var(--saffron)">no single "primary" answer</text>
+
+  <!-- connectors row1 -->
+  <path d="M390,780 L430,780" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M225,830 L225,900 L950,900 L950,830" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+  <path d="M390,800 L1140,800" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+
+  <!-- Row 2: embedding index -->
+  <rect x="430" y="960" width="330" height="100" rx="12" fill="var(--node)" stroke="var(--saffron)" stroke-width="2"/>
+  <text x="595" y="994" text-anchor="middle" class="title" font-size="16">Embedding index</text>
+  <text x="595" y="1016" text-anchor="middle" class="sub">semantic search over gloss + tags</text>
+  <text x="595" y="1034" text-anchor="middle" class="sub" fill="var(--amber)">test models before committing →</text>
+
+  <path d="M595,830 L595,960" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M950,830 L680,960" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+
+  <!-- caution callout: cross-lingual risk -->
+  <rect x="800" y="960" width="340" height="150" rx="10" fill="var(--amber-bg)" stroke="var(--amber)" stroke-width="1.5"/>
+  <text x="818" y="986" class="callout-title" fill="var(--amber)">cross-lingual risk</text>
+  <text x="818" y="1010" class="callout-body">Gurmukhi is underrepresented in most</text>
+  <text x="818" y="1030" class="callout-body">embedding models — don't assume it works.</text>
+  <text x="818" y="1054" class="callout-body">Test candidate models against known</text>
+  <text x="818" y="1074" class="callout-body">related-shabad pairs before committing.</text>
+  <text x="818" y="1098" class="callout-body">Romanized text: sound, not sense — skip it.</text>
+
+  <!-- caution callout: copyright -->
+  <rect x="1180" y="960" width="340" height="150" rx="10" fill="var(--amber-bg)" stroke="var(--amber)" stroke-width="1.5"/>
+  <text x="1198" y="986" class="callout-title" fill="var(--amber)">check permissions per source</text>
+  <text x="1198" y="1010" class="callout-body">Older teekas (e.g. Faridkot) are likely</text>
+  <text x="1198" y="1030" class="callout-body">public domain.</text>
+  <text x="1198" y="1054" class="callout-body">Recent scholarly commentary may still</text>
+  <text x="1198" y="1074" class="callout-body">be under copyright — verify before</text>
+  <text x="1198" y="1094" class="callout-body">building an ingestion pipeline.</text>
+
+  <path d="M1330,830 L1330,900 L1330,960" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+
+  <!-- Row 3: query -> result -->
+  <rect x="60" y="960" width="330" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="225" y="994" text-anchor="middle" class="title" font-size="16">Kid's question</text>
+  <text x="225" y="1016" text-anchor="middle" class="sub">typed in English or Punjabi</text>
+
+  <path d="M390,1010 L430,1010" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="430" y="1190" width="700" height="110" rx="12" fill="var(--node)" stroke="var(--saffron)" stroke-width="2.5"/>
+  <text x="780" y="1224" text-anchor="middle" class="title" font-size="17">Returned to the kid</text>
+  <text x="780" y="1248" text-anchor="middle" class="sub">original Gurmukhi + ang citation, plus every attributed</text>
+  <text x="780" y="1268" text-anchor="middle" class="sub">scholar interpretation found — never a lone AI-generated meaning</text>
+
+  <path d="M595,1060 L595,1190" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M225,1060 L225,1245 L430,1245" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+  <path d="M1330,1060 L1330,1245 L1130,1245" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+
+  <!-- final note -->
+  <rect x="430" y="1340" width="700" height="90" rx="10" fill="none" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="450" y="1366" class="callout-title">the gloss never surfaces</text>
+  <text x="450" y="1390" class="callout-body">It's the search key that got the kid to this shabad — not the</text>
+  <text x="450" y="1408" class="callout-body">answer. Only Gurmukhi + attributed scholar text are ever shown.</text>
+
+</svg>
+</div>
+</body>
+</html>

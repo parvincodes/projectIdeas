@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gup Shup — Pitch (1 page)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EC;
+    --ink:#241C14;
+    --ink-soft:#5B5142;
+    --peacock:#155E56;
+    --peacock-deep:#0E4640;
+    --marigold:#E29B3F;
+    --marigold-deep:#B9761F;
+    --rani:#B23A63;
+    --line:#E4D9C2;
+    --card:#FFFDF7;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:#EDE6D6; font-family:'Work Sans',sans-serif; color:var(--ink);}
+  .page{
+    width:816px; min-height:1056px; margin:32px auto; padding:46px 56px 40px;
+    background:var(--paper); position:relative; box-shadow:0 1px 0 rgba(0,0,0,.06), 0 24px 48px rgba(0,0,0,.14);
+    overflow:hidden;
+  }
+  .page::before{content:""; position:absolute; left:0; right:0; top:0; height:9px;
+    background: repeating-linear-gradient(90deg, var(--peacock) 0 18px, var(--marigold) 18px 36px, var(--rani) 36px 54px); opacity:.85;}
+  h1,h2,h3{font-family:'Fraunces',serif; margin:0; color:var(--peacock-deep); font-weight:700;}
+  .kicker{font-weight:600; font-size:11.5px; letter-spacing:.02em; color:var(--rani); margin:0 0 4px;}
+  .hero{display:flex; justify-content:space-between; align-items:flex-end; gap:20px; margin-top:12px; padding-bottom:14px; border-bottom:2px solid var(--line);}
+  .hero h1{font-size:34px; line-height:1.05;}
+  .hero .gur{font-size:17px; color:var(--marigold-deep); font-weight:600; display:block; margin-bottom:3px;}
+  .tagline{max-width:250px; font-size:12.5px; color:var(--ink-soft); line-height:1.4; text-align:right;}
+  .pullquote{font-family:'Fraunces',serif; font-size:19px; font-weight:600; color:var(--peacock-deep); line-height:1.28;
+    margin:12px 0; padding:10px 16px; border-left:4px solid var(--marigold); background:var(--card);}
+  .pullquote span{color:var(--rani);}
+  h2.sec{font-size:14px; margin:16px 0 8px; text-transform:none;}
+  .flow-steps{display:flex;}
+  .step{flex:1; position:relative; padding:10px 10px 9px; background:var(--card); border:1px solid var(--line); margin-right:-1px;}
+  .step .n{width:18px; height:18px; border-radius:50%; background:var(--peacock); color:#fff; display:flex; align-items:center; justify-content:center; font-size:10.5px; font-weight:700; margin-bottom:5px;}
+  .step:nth-child(2) .n{background:var(--marigold-deep);}
+  .step:nth-child(3) .n{background:var(--rani);}
+  .step:nth-child(4) .n{background:var(--peacock);}
+  .step h4{font-size:11px; margin:0 0 3px; font-weight:700;}
+  .step p{font-size:9.8px; color:var(--ink-soft); margin:0; line-height:1.32;}
+  .step .time{position:absolute; top:10px; right:9px; font-size:9px; color:var(--ink-soft); font-weight:600;}
+
+  .roadmap{display:flex; gap:0; margin-top:10px;}
+  .rm-node{flex:1; position:relative; padding:0 8px;}
+  .rm-line{position:absolute; top:9px; left:0; right:0; height:2px; background:var(--line); z-index:0;}
+  .rm-dot{width:18px; height:18px; border-radius:50%; background:var(--paper); border:3px solid var(--peacock); position:relative; z-index:1; margin:0 auto 6px;}
+  .rm-node:nth-child(2) .rm-dot{border-color:var(--marigold-deep);}
+  .rm-node:nth-child(3) .rm-dot{border-color:var(--rani);}
+  .rm-card{background:var(--card); border:1px solid var(--line); padding:9px 10px; min-height:108px;}
+  .rm-card .stage{font-size:9px; font-weight:700; letter-spacing:.02em; color:var(--rani); margin-bottom:3px;}
+  .rm-card h4{font-family:'Fraunces',serif; font-size:13.5px; margin:0 0 5px; color:var(--peacock-deep);}
+  .rm-card ul{margin:0; padding-left:14px; font-size:9.6px; color:var(--ink-soft); line-height:1.42;}
+  .rm-card li{margin-bottom:2px;}
+
+  .bottom-row{display:flex; gap:20px; margin-top:16px;}
+  .bottom-row > div{flex:1;}
+  .pillars{display:flex; gap:10px;}
+  .pillar{flex:1; background:var(--peacock-deep); color:#F5EEDC; padding:10px 10px; text-align:center;}
+  .pillar h4{font-size:10.5px; margin:0 0 3px; font-weight:700;}
+  .pillar p{font-size:9.2px; margin:0; opacity:.9; line-height:1.32;}
+
+  .quad-legend{font-size:9.8px; color:var(--ink-soft); line-height:1.5;}
+  .quad-legend .dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px;}
+  .quad-legend div{margin-bottom:5px;}
+
+  .cta-bar{margin-top:16px; padding:12px 16px; background:var(--marigold); display:flex; justify-content:space-between; align-items:center;}
+  .cta-bar h3{color:var(--peacock-deep); font-size:14px;}
+  .cta-bar p{margin:2px 0 0; font-size:10.5px; color:var(--peacock-deep); opacity:.85;}
+
+  /* Session-flow timeline */
+  .tl-bar{display:flex; height:44px; border:1px solid var(--line);}
+  .tl-seg{position:relative; display:flex; flex-direction:column; justify-content:center; padding:4px 8px; color:#fff; border-right:2px solid var(--paper);}
+  .tl-seg:last-child{border-right:none;}
+  .tl-seg .lbl{font-size:9.6px; font-weight:700;}
+  .tl-seg .mins{font-size:8px; opacity:.85;}
+  .tl-note{margin:5px 0 0; font-size:9.3px; color:var(--ink-soft); text-align:right;}
+  .job-row{display:flex; align-items:center; gap:5px; margin-top:8px;}
+  .job{flex:1; text-align:center; padding:6px 3px; background:var(--card); border:1px solid var(--line);}
+  .job .icon{font-size:13px;}
+  .job h5{font-size:9px; margin:2px 0 1px; font-weight:700; color:var(--peacock-deep);}
+  .job p{font-size:8px; color:var(--ink-soft); margin:0; line-height:1.2;}
+  .job-arrow{font-size:11px; color:var(--marigold-deep);}
+  .job-caption{font-size:9.5px; font-weight:700; color:var(--rani); margin-top:12px;}
+  .footer-strip{position:absolute; left:0; right:0; bottom:0; height:8px;
+    background: repeating-linear-gradient(90deg, var(--rani) 0 18px, var(--marigold) 18px 36px, var(--peacock) 36px 54px); opacity:.85;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="kicker">HERITAGE LANGUAGE · SPOKEN FLUENCY · AGES 6–14</div>
+  <div class="hero">
+    <div><span class="gur">ਗੱਪ ਸ਼ੱਪ</span><h1>Gup Shup</h1></div>
+    <div class="tagline">Kids build real Punjabi fluency by talking — in small groups of friends they already know, 15 minutes at a time.</div>
+  </div>
+
+  <div class="pullquote">The gap isn't vocabulary. It's <span>peer-shame</span>.<br>Kids need a room where speaking Punjabi with friends is normal — not another app that drills words they half-know.</div>
+
+  <h2 class="sec">Anatomy of a session — 15 minutes, invite-only</h2>
+  <div class="tl-bar">
+    <div class="tl-seg" style="flex-grow:2; background:var(--peacock);"><span class="lbl">Opening ritual</span><span class="mins">2 min</span></div>
+    <div class="tl-seg" style="flex-grow:9; background:var(--marigold-deep);"><span class="lbl">Topic rounds</span><span class="mins">9 min · 4 kids</span></div>
+    <div class="tl-seg" style="flex-grow:2; background:var(--rani);"><span class="lbl">Group finale</span><span class="mins">2 min</span></div>
+    <div class="tl-seg" style="flex-grow:2; background:var(--peacock-deep);"><span class="lbl">Closing ritual</span><span class="mins">2 min</span></div>
+  </div>
+  <p class="tl-note">Same chant opens &amp; closes every session. Feedback note sent to each kid after.</p>
+
+  <div class="job-caption">INSIDE TOPIC ROUNDS — every kid has a job, roles rotate each round</div>
+  <div class="job-row">
+    <div class="job"><div class="icon">🗣️</div><h5>Speaker</h5><p>Talks their turn</p></div>
+    <div class="job-arrow">→</div>
+    <div class="job"><div class="icon">👀</div><h5>Spotter</h5><p>Signals target word heard</p></div>
+    <div class="job-arrow">→</div>
+    <div class="job"><div class="icon">🔢</div><h5>Counter</h5><p>Tracks point jar</p></div>
+    <div class="job-arrow">→</div>
+    <div class="job"><div class="icon">💡</div><h5>Word Helper</h5><p>Only one who can help</p></div>
+  </div>
+
+  <h2 class="sec">MVP → Iteration → North Star</h2>
+  <div class="roadmap">
+    <div class="rm-line"></div>
+    <div class="rm-node"><div class="rm-dot"></div>
+      <div class="rm-card"><div class="stage">NOW · MVP</div><h4>Prove kids want this</h4>
+        <ul><li>Invite-only pods, video call + human host</li><li>Topic cards, manual badges, no app needed</li><li>Pilot: 3–5 families + one Punjabi class</li></ul>
+      </div>
+    </div>
+    <div class="rm-node"><div class="rm-dot"></div>
+      <div class="rm-card"><div class="stage">NEXT · ITERATION</div><h4>Make it a product</h4>
+        <ul><li>Native app, scheduling, streaks, live badges</li><li>AI drafts topics + feedback; flags nudges for host</li><li>Cohorts get their own identity</li></ul>
+      </div>
+    </div>
+    <div class="rm-node"><div class="rm-dot"></div>
+      <div class="rm-card"><div class="stage">LATER · NORTH STAR</div><h4>Scale trust, not just tech</h4>
+        <ul><li>AI co-host handles live nudges</li><li>Vetted host marketplace, school partners</li><li>Expand beyond Punjabi to other mother tongues</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div>
+      <h2 class="sec">Not Duolingo. Not Toastmasters.</h2>
+      <div class="quad-legend">
+        <div><span class="dot" style="background:#8B8577"></span><b>Duolingo</b> — solo drills, no one to talk to.</div>
+        <div><span class="dot" style="background:#8B8577"></span><b>Toastmasters</b> — social, but built for performance pressure. Assumes fluency.</div>
+        <div><span class="dot" style="background:#B23A63"></span><b>Gup Shup</b> — social <i>and</i> low-stakes: a playdate where Punjabi is the shared game.</div>
+      </div>
+    </div>
+    <div>
+      <h2 class="sec">Safety model at launch</h2>
+      <div class="pillars">
+        <div class="pillar"><h4>Invite-only</h4><p>Only peers a family already knows.</p></div>
+        <div class="pillar"><h4>Adult present</h4><p>A real host runs every session, live.</p></div>
+        <div class="pillar"><h4>Effort &gt; accuracy</h4><p>Attempts rewarded before correctness.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-bar">
+    <div><h3>The ask</h3><p>Pilot Gup Shup this season with 3–5 families and one community Punjabi class.</p></div>
+  </div>
+
+  <div class="footer-strip"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gurbani Agent — MVP (Jap Ji + Sohila)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14213D;
+    --node: #1B2C4D;
+    --node-border: #3A4E77;
+    --paper: #F3EEE3;
+    --slate: #A9B6CC;
+    --saffron: #E8973A;
+    --amber: #D97A3F;
+    --amber-bg: #2E2216;
+    --muted: #24304F;
+    --muted-border: #445372;
+    --gloss: #5B6FA0;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; background: var(--bg); font-family:'Work Sans', sans-serif; }
+  body { padding: 2.5rem 1rem 4rem; }
+  h1 { font-family:'Fraunces', serif; font-weight:600; color:var(--paper);
+       text-align:center; font-size: clamp(1.3rem, 3vw, 1.8rem); margin: 0 0 0.4rem; }
+  .wrap { max-width: 1500px; margin: 0 auto; }
+  svg text { font-family: 'Work Sans', sans-serif; fill: var(--paper); }
+  svg .title { font-family: 'Fraunces', serif; font-weight: 600; }
+  svg .sub { fill: var(--slate); font-size: 14.5px; }
+  svg .callout-title { fill: var(--saffron); font-weight: 600; font-size: 14.5px; }
+  svg .callout-body { fill: var(--slate); font-size: 14px; }
+  svg .muted-text { fill: #7C89A8; font-size: 13.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Gurbani Agent — MVP scope: Jap Ji + Sohila only</h1>
+<svg viewBox="0 0 1600 1200" xmlns="http://www.w3.org/2000/svg" width="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6B7FA6"/>
+    </marker>
+  </defs>
+
+  <!-- Agent -->
+  <rect x="560" y="30" width="480" height="90" rx="14" fill="var(--node)" stroke="var(--saffron)" stroke-width="2"/>
+  <text x="800" y="64" text-anchor="middle" class="title" font-size="19">Gurbani Agent — MVP</text>
+  <text x="800" y="88" text-anchor="middle" class="sub">scope: Jap Ji + Sohila only</text>
+
+  <rect x="1080" y="30" width="460" height="90" rx="10" fill="none" stroke="var(--node-border)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="1098" y="54" class="callout-title">role, unchanged</text>
+  <text x="1098" y="76" class="callout-body">Same orchestrator logic — this MVP</text>
+  <text x="1098" y="94" class="callout-body">just narrows the corpus, not the design.</text>
+
+  <!-- deferred row -->
+  <text x="60" y="150" class="muted-text" font-style="italic">deferred to later phases (same architecture, more corpus)</text>
+  <rect x="60" y="160" width="220" height="60" rx="10" fill="var(--muted)" stroke="var(--muted-border)" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="170" y="195" text-anchor="middle" class="muted-text">History</text>
+  <rect x="300" y="160" width="220" height="60" rx="10" fill="var(--muted)" stroke="var(--muted-border)" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="410" y="195" text-anchor="middle" class="muted-text">Saakhi's</text>
+  <rect x="540" y="160" width="240" height="60" rx="10" fill="var(--muted)" stroke="var(--muted-border)" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="660" y="195" text-anchor="middle" class="muted-text">Current Affairs</text>
+  <rect x="800" y="160" width="300" height="60" rx="10" fill="var(--muted)" stroke="var(--muted-border)" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="950" y="195" text-anchor="middle" class="muted-text">Rest of Guru Granth Sahib</text>
+
+  <!-- Gurbani search scoped -->
+  <path d="M800,120 L800,265" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <rect x="580" y="265" width="440" height="90" rx="12" fill="var(--node)" stroke="var(--saffron)" stroke-width="2.5"/>
+  <text x="800" y="298" text-anchor="middle" class="title" font-size="17">Gurbani Search — Jap Ji + Sohila</text>
+  <text x="800" y="320" text-anchor="middle" class="sub">same architecture as full design, narrower corpus</text>
+  <text x="800" y="338" text-anchor="middle" class="sub" fill="var(--saffron)">↓ internals below</text>
+
+  <line x1="800" y1="355" x2="800" y2="400" stroke="var(--saffron)" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <text x="60" y="400" class="title" font-size="19" fill="var(--saffron)">Ingestion pipeline (new, since you confirmed OCR is needed)</text>
+
+  <!-- Ingestion pipeline -->
+  <rect x="60" y="425" width="260" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="190" y="460" text-anchor="middle" class="title" font-size="15">Scanned pages</text>
+  <text x="190" y="482" text-anchor="middle" class="sub">Jap Ji + Sohila only</text>
+  <text x="190" y="500" text-anchor="middle" class="sub">(mixed base text + commentary)</text>
+
+  <path d="M320,475 L360,475" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="360" y="425" width="260" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="490" y="460" text-anchor="middle" class="title" font-size="15">Page triage</text>
+  <text x="490" y="482" text-anchor="middle" class="sub">base text vs. commentary</text>
+  <text x="490" y="500" text-anchor="middle" class="sub">LLM-assisted, human-checked</text>
+
+  <path d="M540,425 L620,340 L900,340 L900,425" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+  <path d="M620,525 L1070,525" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+
+  <rect x="660" y="425" width="280" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="800" y="458" text-anchor="middle" class="title" font-size="15">Vetted digital Gurmukhi</text>
+  <text x="800" y="480" text-anchor="middle" class="sub">base-text path — swap in an</text>
+  <text x="800" y="498" text-anchor="middle" class="sub">existing trusted source, skip OCR</text>
+
+  <rect x="1070" y="425" width="330" height="100" rx="12" fill="var(--amber-bg)" stroke="var(--amber)" stroke-width="2"/>
+  <text x="1235" y="454" text-anchor="middle" class="title" font-size="15">Gurmukhi OCR + correction</text>
+  <text x="1235" y="476" text-anchor="middle" class="sub">commentary path — OCR engine →</text>
+  <text x="1235" y="494" text-anchor="middle" class="sub">dictionary/grammar fix → human proofread</text>
+
+  <!-- stores row -->
+  <path d="M800,525 L370,600" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+  <path d="M1235,525 L1200,600" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+
+  <rect x="60" y="600" width="300" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="210" y="632" text-anchor="middle" class="title" font-size="15">Canonical text store</text>
+  <text x="210" y="654" text-anchor="middle" class="sub">Gurmukhi · ang · pauri · author</text>
+  <text x="210" y="672" text-anchor="middle" class="sub">just 2 banis for now</text>
+
+  <path d="M360,650 L390,650" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+
+  <rect x="390" y="600" width="300" height="100" rx="12" fill="var(--node)" stroke="var(--gloss)" stroke-width="2"/>
+  <text x="540" y="632" text-anchor="middle" class="title" font-size="15">English gloss</text>
+  <text x="540" y="654" text-anchor="middle" class="sub">per line, meaning-preserving</text>
+  <text x="540" y="672" text-anchor="middle" class="sub" fill="var(--saffron)">search aid only</text>
+
+  <rect x="720" y="600" width="260" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="850" y="632" text-anchor="middle" class="title" font-size="15">Concept tags</text>
+  <text x="850" y="654" text-anchor="middle" class="sub">naam · hukam · humility ·</text>
+  <text x="850" y="672" text-anchor="middle" class="sub">daily discipline (Jap = morning,</text>
+  <text x="850" y="690" text-anchor="middle" class="sub">Sohila = evening reflection)</text>
+
+  <rect x="1010" y="600" width="350" height="100" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="1185" y="628" text-anchor="middle" class="title" font-size="15">Scholar interpretations</text>
+  <text x="1185" y="650" text-anchor="middle" class="sub">multiple per shabad, attributed</text>
+  <text x="1185" y="668" text-anchor="middle" class="sub" fill="var(--saffron)">no single "primary" answer</text>
+
+  <!-- embedding + query + result -->
+  <path d="M540,700 L540,760" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M850,700 L610,760" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+
+  <rect x="390" y="760" width="300" height="90" rx="12" fill="var(--node)" stroke="var(--saffron)" stroke-width="2"/>
+  <text x="540" y="792" text-anchor="middle" class="title" font-size="15">Embedding index</text>
+  <text x="540" y="814" text-anchor="middle" class="sub">small, fast to test at this scale</text>
+  <text x="540" y="832" text-anchor="middle" class="sub" fill="var(--amber)">still test models before committing</text>
+
+  <rect x="60" y="760" width="300" height="90" rx="12" fill="var(--node)" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="210" y="798" text-anchor="middle" class="title" font-size="15">Kid's question</text>
+  <text x="210" y="822" text-anchor="middle" class="sub">English or Punjabi</text>
+  <path d="M360,805 L390,805" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+
+  <path d="M540,850 L540,920" stroke="#6B7FA6" stroke-width="1.6" fill="none" marker-end="url(#arrow)"/>
+  <path d="M210,700 L210,940 L390,940" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+  <path d="M1185,700 L1185,940 L1090,940" stroke="#6B7FA6" stroke-width="1.4" fill="none" marker-end="url(#arrow)" stroke-dasharray="3 3"/>
+
+  <rect x="390" y="920" width="700" height="100" rx="12" fill="var(--node)" stroke="var(--saffron)" stroke-width="2.5"/>
+  <text x="740" y="954" text-anchor="middle" class="title" font-size="16">Returned to the kid</text>
+  <text x="740" y="978" text-anchor="middle" class="sub">original Gurmukhi + ang, plus every attributed</text>
+  <text x="740" y="996" text-anchor="middle" class="sub">scholar interpretation found for that line</text>
+
+  <!-- why start here -->
+  <rect x="60" y="1060" width="1030" height="110" rx="10" fill="none" stroke="var(--node-border)" stroke-width="1.5"/>
+  <text x="80" y="1088" class="callout-title">why this is a good MVP</text>
+  <text x="80" y="1112" class="callout-body">Small, well-bounded, daily-recited banis — enough to prove OCR → ingestion → retrieval →</text>
+  <text x="80" y="1132" class="callout-body">multi-scholar display end to end, before pointing the same pipeline at the rest of the Granth.</text>
+
+</svg>
+</div>
+</body>
+</html>

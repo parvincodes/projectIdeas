@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gup Shup — Engagement Flywheel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EC; --ink:#241C14; --ink-soft:#5B5142;
+    --peacock:#155E56; --peacock-deep:#0E4640;
+    --marigold:#E29B3F; --marigold-deep:#B9761F;
+    --rani:#B23A63; --line:#E4D9C2; --card:#FFFDF7;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; padding:36px 24px 60px; background:#EDE6D6; font-family:'Work Sans',sans-serif; color:var(--ink);}
+  h1{font-family:'Fraunces',serif; font-size:26px; color:var(--peacock-deep); margin:0 0 4px;}
+  .intro{color:var(--ink-soft); font-size:13.5px; margin:0 0 26px; max-width:620px;}
+  .wrap{display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;}
+
+  .fly-node{position:absolute; width:132px; text-align:center; transform:translate(-50%,-50%);}
+  .fly-node .icon{width:52px; height:52px; border-radius:50%; background:var(--card); border:3px solid var(--marigold); display:flex; align-items:center; justify-content:center; font-size:22px; margin:0 auto 6px; box-shadow:0 4px 10px rgba(0,0,0,.08);}
+  .fly-node.n2 .icon, .fly-node.n4 .icon{border-color:var(--peacock);}
+  .fly-node.n3 .icon{border-color:var(--rani); background:var(--rani); color:#fff;}
+  .fly-node .num{font-size:9.5px; font-weight:700; color:var(--rani); letter-spacing:.03em;}
+  .fly-node .lbl{font-size:11.5px; font-weight:700; color:var(--peacock-deep); line-height:1.25; margin-top:2px;}
+  .fly-node .sub{font-size:9px; color:var(--ink-soft); line-height:1.3; margin-top:2px;}
+
+  .fly-center{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; width:140px;}
+  .fly-center .spin{font-size:30px; color:var(--marigold-deep);}
+  .fly-center .cap{font-family:'Fraunces',serif; font-size:14px; font-weight:700; color:var(--peacock-deep); margin-top:2px;}
+
+  .currency-panel{flex:1; min-width:300px;}
+  .currency-panel h2{font-size:16px; margin:0 0 10px;}
+  .cur-cards{display:flex; gap:12px; margin-bottom:16px;}
+  .cur-card{flex:1; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 14px;}
+  .cur-card.pod{border-top:4px solid var(--peacock);}
+  .cur-card.personal{border-top:4px solid var(--marigold-deep);}
+  .cur-card .ct{font-size:12px; font-weight:700; color:var(--peacock-deep); margin-bottom:5px;}
+  .cur-card ul{margin:0; padding-left:15px; font-size:10.5px; color:var(--ink-soft); line-height:1.5;}
+
+  .shop-title{font-size:11.5px; font-weight:700; color:var(--rani); margin:4px 0 8px; letter-spacing:.02em;}
+  .shop-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+  .item{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px; text-align:center;}
+  .item .i-icon{font-size:24px;}
+  .item .i-name{font-size:10px; font-weight:700; color:var(--peacock-deep); margin:4px 0 2px;}
+  .item .i-price{font-size:9.5px; color:var(--marigold-deep); font-weight:700;}
+  .item.rare{border-color:var(--rani);}
+  .item.rare .i-price{color:var(--rani);}
+  .item .i-tag{font-size:7.8px; color:var(--ink-soft); margin-top:2px;}
+
+  .guardrail{margin-top:16px; padding:10px 14px; background:var(--peacock-deep); color:#F5EEDC; border-radius:10px; font-size:10.5px; line-height:1.5;}
+  .guardrail b{color:var(--marigold);}
+</style>
+</head>
+<body>
+
+<h1>Engagement Flywheel</h1>
+<p class="intro">Points and badges bootstrap the habit — but what keeps a pod coming back at week 8 is the loop below, where the avatar marketplace turns earned points into visible self-expression the pod actually sees.</p>
+
+<div class="wrap">
+  <div style="position:relative; width:420px; height:420px; flex-shrink:0;">
+    <svg width="420" height="420" style="position:absolute; top:0; left:0;">
+      <circle cx="210" cy="210" r="150" fill="none" stroke="#D8C9A8" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+    </svg>
+
+    <div class="fly-center">
+      <div class="spin">↻</div>
+      <div class="cap">Engagement<br>Flywheel</div>
+    </div>
+
+    <div class="fly-node" style="left:210px; top:60px;">
+      <div class="num">1</div>
+      <div class="icon">👥</div>
+      <div class="lbl">Show up with friends</div>
+      <div class="sub">Invite-only pod session</div>
+    </div>
+
+    <div class="fly-node n2" style="left:352.7px; top:163.6px;">
+      <div class="num">2</div>
+      <div class="icon">🗣️</div>
+      <div class="lbl">Speak & earn points</div>
+      <div class="sub">Pod jar + personal wallet</div>
+    </div>
+
+    <div class="fly-node n3" style="left:298.2px; top:331.4px;">
+      <div class="num">3</div>
+      <div class="icon">🛍️</div>
+      <div class="lbl">Unlock an avatar</div>
+      <div class="sub">Spend personal points</div>
+    </div>
+
+    <div class="fly-node n4" style="left:121.8px; top:331.4px;">
+      <div class="num">4</div>
+      <div class="icon">✨</div>
+      <div class="lbl">Show off to the pod</div>
+      <div class="sub">Friends notice & react</div>
+    </div>
+
+    <div class="fly-node" style="left:67.3px; top:163.6px;">
+      <div class="num">5</div>
+      <div class="icon">📅</div>
+      <div class="lbl">Look forward to next time</div>
+      <div class="sub">Cliffhanger topic / cultural special</div>
+    </div>
+  </div>
+
+  <div class="currency-panel">
+    <h2>Two currencies, two jobs</h2>
+    <div class="cur-cards">
+      <div class="cur-card pod">
+        <div class="ct">🫙 Pod Points (shared)</div>
+        <ul>
+          <li>Earned together, spent together</li>
+          <li>Unlocks pod-level rewards: team badge, special episode</li>
+          <li>Keeps the group cooperative, not competitive</li>
+        </ul>
+      </div>
+      <div class="cur-card personal">
+        <div class="ct">👛 Personal Points (individual)</div>
+        <ul>
+          <li>Earned by each kid for their own turns</li>
+          <li>Spent only in the Avatar Marketplace</li>
+          <li>Gives each kid autonomy & self-expression</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="shop-title">AVATAR MARKETPLACE — SAMPLE DROP</div>
+    <div class="shop-grid">
+      <div class="item"><div class="i-icon">🪘</div><div class="i-name">Dhol Badge Frame</div><div class="i-price">40 pts</div></div>
+      <div class="item"><div class="i-icon">🧣</div><div class="i-name">Phulkari Scarf</div><div class="i-price">60 pts</div></div>
+      <div class="item"><div class="i-icon">👳</div><div class="i-name">Bhangra Turban</div><div class="i-price">75 pts</div></div>
+      <div class="item rare"><div class="i-icon">🪷</div><div class="i-name">Golden Charm</div><div class="i-price">120 pts</div><div class="i-tag">Vaisakhi drop · rare</div></div>
+    </div>
+
+    <div class="guardrail">
+      <b>Guardrails:</b> cosmetic only — never affects turn order, scoring, or pod standing. Points-only economy, no real-money purchases by kids. Seasonal drops tied to the cultural calendar, not artificial scarcity.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

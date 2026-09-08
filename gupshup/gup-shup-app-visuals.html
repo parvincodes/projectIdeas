@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gup Shup — App Visuals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EC;
+    --ink:#241C14;
+    --ink-soft:#5B5142;
+    --peacock:#155E56;
+    --peacock-deep:#0E4640;
+    --marigold:#E29B3F;
+    --marigold-deep:#B9761F;
+    --rani:#B23A63;
+    --line:#E4D9C2;
+    --card:#FFFDF7;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:36px 24px 60px;
+    background:#EDE6D6;
+    font-family:'Work Sans',sans-serif; color:var(--ink);
+  }
+  h1{font-family:'Fraunces',serif; font-size:26px; color:var(--peacock-deep); margin:0 0 4px;}
+  .intro{color:var(--ink-soft); font-size:13.5px; margin:0 0 30px; max-width:640px;}
+  .board{display:flex; gap:26px; flex-wrap:wrap; align-items:flex-start;}
+  .frame-block{text-align:center;}
+  .frame-label{font-size:12px; font-weight:700; color:var(--rani); margin-bottom:10px; letter-spacing:.01em;}
+
+  /* Phone frame */
+  .phone{width:270px; height:560px; background:#1B1712; border-radius:34px; padding:9px; box-shadow:0 18px 34px rgba(0,0,0,.28);}
+  .screen{width:100%; height:100%; border-radius:25px; background:var(--paper); overflow:hidden; position:relative; display:flex; flex-direction:column;}
+  .notch{width:70px; height:16px; background:#1B1712; border-radius:0 0 12px 12px; margin:0 auto; position:relative; z-index:2;}
+  .screen-body{flex:1; padding:14px 14px 10px; overflow:hidden; display:flex; flex-direction:column; gap:10px;}
+
+  .greet{font-size:14px; font-weight:700; color:var(--peacock-deep);}
+  .greet .flame{color:var(--marigold-deep); font-weight:700; font-size:11.5px;}
+
+  .pod-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 12px;}
+  .pod-card .pod-title{font-size:11.5px; font-weight:700; color:var(--rani); margin-bottom:6px;}
+  .avatars{display:flex; gap:6px;}
+  .avatar{width:26px; height:26px; border-radius:50%; background:var(--marigold); display:flex; align-items:center; justify-content:center; font-size:12px; border:2px solid var(--paper); box-shadow:0 0 0 1px var(--line);}
+
+  .session-card{background:var(--peacock-deep); color:#F5EEDC; border-radius:12px; padding:10px 12px;}
+  .session-card .tag{font-size:9px; letter-spacing:.04em; opacity:.75; font-weight:600;}
+  .session-card .title{font-size:12.5px; font-weight:700; margin:3px 0 8px;}
+  .join-btn{background:var(--marigold); color:var(--peacock-deep); font-size:10.5px; font-weight:700; border-radius:8px; padding:6px 0; text-align:center;}
+
+  .jar-row{display:flex; align-items:center; gap:8px;}
+  .jar-label{font-size:10px; color:var(--ink-soft); font-weight:600; width:64px;}
+  .jar-track{flex:1; height:9px; background:var(--line); border-radius:5px; overflow:hidden;}
+  .jar-fill{height:100%; background:linear-gradient(90deg, var(--marigold-deep), var(--marigold));}
+  .jar-num{font-size:10px; font-weight:700; color:var(--peacock-deep);}
+
+  .badge-shelf{display:flex; gap:8px;}
+  .badge{width:40px; text-align:center;}
+  .badge .b-icon{width:34px; height:34px; border-radius:50%; background:var(--card); border:2px solid var(--marigold); display:flex; align-items:center; justify-content:center; font-size:15px; margin:0 auto 3px;}
+  .badge .b-label{font-size:7.5px; color:var(--ink-soft); line-height:1.1;}
+
+  .bottom-nav{margin-top:auto; display:flex; justify-content:space-around; padding:9px 0 4px; border-top:1px solid var(--line); background:var(--card);}
+  .nav-item{font-size:15px; opacity:.55;}
+  .nav-item.active{opacity:1;}
+
+  /* Live session screen */
+  .timer-ring{width:88px; height:88px; border-radius:50%; border:7px solid var(--marigold-deep); display:flex; align-items:center; justify-content:center; margin:4px auto 0; position:relative;}
+  .timer-ring::before{content:""; position:absolute; inset:-7px; border-radius:50%; border:7px solid var(--line); z-index:-1;}
+  .timer-ring .t{font-size:17px; font-weight:700; color:var(--peacock-deep); font-family:'Fraunces',serif;}
+  .phase-label{text-align:center; font-size:10px; font-weight:700; color:var(--rani); letter-spacing:.03em;}
+
+  .topic-card{background:var(--card); border:1.5px solid var(--marigold); border-radius:12px; padding:10px 12px; text-align:center;}
+  .topic-card .q{font-size:13px; font-weight:700; color:var(--peacock-deep); margin-bottom:4px;}
+  .topic-card .scaffold{font-size:9.5px; color:var(--ink-soft); font-style:italic;}
+
+  .role-row{display:flex; justify-content:space-between; gap:4px;}
+  .role-chip{flex:1; text-align:center; padding:6px 2px; border-radius:8px; background:var(--card); border:1px solid var(--line);}
+  .role-chip.speaking{background:var(--marigold); border-color:var(--marigold-deep);}
+  .role-chip .r-icon{font-size:14px;}
+  .role-chip .r-name{font-size:7px; font-weight:700; color:var(--peacock-deep); margin-top:2px;}
+
+  .mic-wave{display:flex; justify-content:center; align-items:flex-end; gap:3px; height:20px;}
+  .mic-wave span{width:4px; background:var(--peacock); border-radius:2px; animation:wave 1s infinite ease-in-out;}
+  .mic-wave span:nth-child(1){height:6px; animation-delay:0s;}
+  .mic-wave span:nth-child(2){height:16px; animation-delay:.15s;}
+  .mic-wave span:nth-child(3){height:10px; animation-delay:.3s;}
+  .mic-wave span:nth-child(4){height:18px; animation-delay:.45s;}
+  .mic-wave span:nth-child(5){height:8px; animation-delay:.6s;}
+  @keyframes wave{0%,100%{transform:scaleY(.5);} 50%{transform:scaleY(1);}}
+
+  /* Recap screen */
+  .recap-hero{text-align:center; padding:6px 0 2px;}
+  .recap-hero .big{font-family:'Fraunces',serif; font-size:19px; color:var(--peacock-deep); font-weight:700;}
+  .earned-row{display:flex; gap:8px; justify-content:center;}
+  .chips{display:flex; flex-wrap:wrap; gap:6px;}
+  .chip{font-size:9.5px; padding:4px 9px; border-radius:14px; background:var(--card); border:1px solid var(--line); color:var(--ink-soft);}
+  .chip.good{border-color:var(--peacock); color:var(--peacock-deep);}
+  .chip.next{border-color:var(--rani); color:var(--rani);}
+  .section-label{font-size:9.5px; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.03em;}
+  .share-btn{margin-top:auto; background:var(--peacock-deep); color:#F5EEDC; text-align:center; padding:9px 0; border-radius:10px; font-size:11px; font-weight:700;}
+
+  /* Parent dashboard (browser frame) */
+  .browser{width:560px; background:#1B1712; border-radius:14px; padding:8px; box-shadow:0 18px 34px rgba(0,0,0,.28);}
+  .browser-bar{display:flex; gap:5px; padding:4px 6px 8px;}
+  .browser-bar span{width:8px; height:8px; border-radius:50%; background:#4A4438;}
+  .browser-screen{background:var(--paper); border-radius:8px; padding:18px 20px; min-height:470px;}
+  .dash-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .dash-head h3{font-family:'Fraunces',serif; font-size:17px; color:var(--peacock-deep); margin:0;}
+  .dash-head .sub{font-size:10.5px; color:var(--ink-soft);}
+  .stat-row{display:flex; gap:10px; margin-bottom:14px;}
+  .stat{flex:1; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 12px;}
+  .stat .num{font-family:'Fraunces',serif; font-size:20px; font-weight:700; color:var(--peacock-deep);}
+  .stat .lbl{font-size:9.5px; color:var(--ink-soft);}
+  .chart-card{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:14px;}
+  .chart-card .lbl{font-size:10.5px; font-weight:700; color:var(--rani); margin-bottom:8px;}
+  .bars{display:flex; align-items:flex-end; gap:8px; height:70px;}
+  .bar{flex:1; background:linear-gradient(180deg, var(--marigold), var(--marigold-deep)); border-radius:4px 4px 0 0; position:relative;}
+  .bar .d{position:absolute; bottom:-16px; left:0; right:0; text-align:center; font-size:8.5px; color:var(--ink-soft);}
+  .timeline-row{display:flex; gap:10px;}
+  .tl-badge{flex:1; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:9px; text-align:center;}
+  .tl-badge .b-icon{font-size:18px;}
+  .tl-badge .b-txt{font-size:8.7px; color:var(--ink-soft); margin-top:3px; line-height:1.3;}
+</style>
+</head>
+<body>
+
+<h1>Gup Shup — App Visuals</h1>
+<p class="intro">Three kid-facing screens through one session (home → live round → recap) plus the parent-facing progress dashboard. Same visual language as the pitch deck.</p>
+
+<div class="board">
+
+  <div class="frame-block">
+    <div class="frame-label">1 · HOME — MY POD</div>
+    <div class="phone"><div class="notch"></div>
+      <div class="screen">
+        <div class="screen-body">
+          <div class="greet">ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ, Simran! <span class="flame">🔥 6-day streak</span></div>
+
+          <div class="pod-card">
+            <div class="pod-title">YOUR POD · Sherni Squad 🐯</div>
+            <div class="avatars">
+              <div class="avatar">S</div><div class="avatar">A</div><div class="avatar">R</div><div class="avatar">J</div>
+            </div>
+          </div>
+
+          <div class="session-card">
+            <div class="tag">TODAY · 5:00 PM</div>
+            <div class="title">Topic: Your favorite festival</div>
+            <div class="join-btn">Join Session</div>
+          </div>
+
+          <div class="jar-row">
+            <div class="jar-label">This week</div>
+            <div class="jar-track"><div class="jar-fill" style="width:70%"></div></div>
+            <div class="jar-num">42 pts</div>
+          </div>
+
+          <div class="section-label">Badge shelf</div>
+          <div class="badge-shelf">
+            <div class="badge"><div class="b-icon">🌟</div><div class="b-label">Full Sentence</div></div>
+            <div class="badge"><div class="b-icon">🎯</div><div class="b-label">New Word x10</div></div>
+            <div class="badge"><div class="b-icon">🤝</div><div class="b-label">Team Helper</div></div>
+          </div>
+
+          <div class="bottom-nav">
+            <div class="nav-item active">🏠</div>
+            <div class="nav-item">📅</div>
+            <div class="nav-item">🏅</div>
+            <div class="nav-item">👤</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="frame-block">
+    <div class="frame-label">2 · LIVE — TOPIC ROUND</div>
+    <div class="phone"><div class="notch"></div>
+      <div class="screen">
+        <div class="screen-body">
+          <div class="phase-label">TOPIC ROUNDS</div>
+          <div class="timer-ring"><div class="t">2:15</div></div>
+
+          <div class="topic-card">
+            <div class="q">ਤੁਹਾਡਾ ਮਨਪਸੰਦ ਤਿਓਹਾਰ ਕਿਹੜਾ ਹੈ?</div>
+            <div class="scaffold">ਮੈਨੂੰ ___ ਪਸੰਦ ਹੈ ਕਿਉਂਕਿ ___</div>
+          </div>
+
+          <div class="section-label">This round's jobs</div>
+          <div class="role-row">
+            <div class="role-chip speaking"><div class="r-icon">🗣️</div><div class="r-name">Simran</div></div>
+            <div class="role-chip"><div class="r-icon">👀</div><div class="r-name">Arjun</div></div>
+            <div class="role-chip"><div class="r-icon">🔢</div><div class="r-name">Rhea</div></div>
+            <div class="role-chip"><div class="r-icon">💡</div><div class="r-name">Jiya</div></div>
+          </div>
+
+          <div class="mic-wave"><span></span><span></span><span></span><span></span><span></span></div>
+
+          <div class="jar-row">
+            <div class="jar-label">Point jar</div>
+            <div class="jar-track"><div class="jar-fill" style="width:55%"></div></div>
+            <div class="jar-num">14</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="frame-block">
+    <div class="frame-label">3 · RECAP — AFTER SESSION</div>
+    <div class="phone"><div class="notch"></div>
+      <div class="screen">
+        <div class="screen-body">
+          <div class="recap-hero">
+            <div style="font-size:26px;">🎉</div>
+            <div class="big">Great job today!</div>
+          </div>
+
+          <div class="section-label">Badges earned this session</div>
+          <div class="earned-row">
+            <div class="badge"><div class="b-icon">🌟</div><div class="b-label">Sentence Star</div></div>
+            <div class="badge"><div class="b-icon">🎯</div><div class="b-label">New Word</div></div>
+          </div>
+
+          <div class="section-label">Words you used well</div>
+          <div class="chips">
+            <div class="chip good">ਤਿਓਹਾਰ</div>
+            <div class="chip good">ਖੁਸ਼ੀ</div>
+            <div class="chip good">ਪਰਿਵਾਰ</div>
+          </div>
+
+          <div class="section-label">Try these next time</div>
+          <div class="chips">
+            <div class="chip next">ਰੌਣਕ</div>
+            <div class="chip next">ਯਾਦਾਂ</div>
+          </div>
+
+          <div class="jar-row">
+            <div class="jar-label">Streak</div>
+            <div class="jar-num" style="color:var(--marigold-deep);">🔥 7 days!</div>
+          </div>
+
+          <div class="share-btn">Share with parents</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:34px;">
+  <div class="frame-block" style="text-align:left;">
+    <div class="frame-label">4 · PARENT DASHBOARD (WEB)</div>
+    <div class="browser">
+      <div class="browser-bar"><span></span><span></span><span></span></div>
+      <div class="browser-screen">
+        <div class="dash-head">
+          <div>
+            <h3>Simran's Progress</h3>
+            <div class="sub">Sherni Squad · 8 sessions completed</div>
+          </div>
+          <div class="jar-num" style="font-size:14px;">🔥 6-day streak</div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat"><div class="num">116</div><div class="lbl">Total points</div></div>
+          <div class="stat"><div class="num">34</div><div class="lbl">New words learned</div></div>
+          <div class="stat"><div class="num">8/8</div><div class="lbl">Sessions attended</div></div>
+        </div>
+
+        <div class="chart-card">
+          <div class="lbl">POINTS PER SESSION</div>
+          <div class="bars">
+            <div class="bar" style="height:40%"><span class="d">S1</span></div>
+            <div class="bar" style="height:55%"><span class="d">S2</span></div>
+            <div class="bar" style="height:48%"><span class="d">S3</span></div>
+            <div class="bar" style="height:70%"><span class="d">S4</span></div>
+            <div class="bar" style="height:62%"><span class="d">S5</span></div>
+            <div class="bar" style="height:85%"><span class="d">S6</span></div>
+            <div class="bar" style="height:78%"><span class="d">S7</span></div>
+            <div class="bar" style="height:95%"><span class="d">S8</span></div>
+          </div>
+        </div>
+
+        <div class="lbl" style="font-size:10.5px; font-weight:700; color:var(--rani); margin-bottom:8px;">RECENT BADGES</div>
+        <div class="timeline-row">
+          <div class="tl-badge"><div class="b-icon">🌟</div><div class="b-txt">Full Sentence Star</div></div>
+          <div class="tl-badge"><div class="b-icon">🎯</div><div class="b-txt">10 New Words</div></div>
+          <div class="tl-badge"><div class="b-icon">🤝</div><div class="b-txt">Team Helper</div></div>
+          <div class="tl-badge"><div class="b-icon">🔥</div><div class="b-txt">7-Day Streak</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

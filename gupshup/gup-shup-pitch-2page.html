@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gup Shup — Pitch (2 pages)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EC;
+    --ink:#241C14;
+    --ink-soft:#5B5142;
+    --peacock:#155E56;
+    --peacock-deep:#0E4640;
+    --marigold:#E29B3F;
+    --marigold-deep:#B9761F;
+    --rani:#B23A63;
+    --line:#E4D9C2;
+    --card:#FFFDF7;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:#EDE6D6;
+    font-family:'Work Sans',sans-serif;
+    color:var(--ink);
+  }
+  .page{
+    width:816px;
+    min-height:1056px;
+    margin:32px auto;
+    padding:58px 62px 46px;
+    background:var(--paper);
+    position:relative;
+    box-shadow:0 1px 0 rgba(0,0,0,.06), 0 24px 48px rgba(0,0,0,.14);
+    overflow:hidden;
+  }
+  .page::before{
+    content:"";
+    position:absolute; left:0; right:0; top:0; height:10px;
+    background: repeating-linear-gradient(90deg, var(--peacock) 0 18px, var(--marigold) 18px 36px, var(--rani) 36px 54px);
+    opacity:.85;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif; margin:0; color:var(--peacock-deep); font-weight:700;}
+  .kicker{
+    font-family:'Work Sans',sans-serif;
+    font-weight:600; font-size:12.5px; letter-spacing:.02em; color:var(--rani);
+    margin:0 0 6px;
+  }
+  .hero{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-top:14px; padding-bottom:18px; border-bottom:2px solid var(--line);}
+  .hero h1{font-size:40px; line-height:1.05;}
+  .hero .gur{font-size:20px; color:var(--marigold-deep); font-weight:600; display:block; margin-bottom:4px;}
+  .tagline{max-width:230px; font-size:14px; color:var(--ink-soft); line-height:1.45; text-align:right;}
+  .section{margin-top:22px;}
+  .section h2{font-size:19px; margin-bottom:12px;}
+  .lede{font-size:14.5px; color:var(--ink-soft); line-height:1.55; max-width:640px;}
+  .pullquote{
+    font-family:'Fraunces',serif; font-size:23px; font-weight:600; color:var(--peacock-deep);
+    line-height:1.3; margin:16px 0 4px; padding:14px 20px; border-left:4px solid var(--marigold);
+    background:var(--card);
+  }
+  .pullquote span{color:var(--rani);}
+  .two-col{display:flex; gap:26px; margin-top:14px;}
+  .two-col > div{flex:1;}
+  .mini-card{background:var(--card); border:1px solid var(--line); border-radius:2px; padding:14px 16px;}
+  .mini-card h3{font-size:13.5px; color:var(--rani); margin-bottom:6px; font-family:'Work Sans',sans-serif; font-weight:600;}
+  .mini-card p{font-size:12.5px; color:var(--ink-soft); margin:0; line-height:1.5;}
+  .flow{margin-top:18px;}
+  .flow-steps{display:flex; align-items:stretch; gap:0;}
+  .step{flex:1; position:relative; padding:14px 12px 12px; background:var(--card); border:1px solid var(--line); margin-right:-1px;}
+  .step .n{
+    width:22px; height:22px; border-radius:50%; background:var(--peacock); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; margin-bottom:8px;
+  }
+  .step:nth-child(2) .n{background:var(--marigold-deep);}
+  .step:nth-child(3) .n{background:var(--rani);}
+  .step:nth-child(4) .n{background:var(--peacock);}
+  .step h4{font-size:12.5px; margin:0 0 4px; font-weight:700;}
+  .step p{font-size:11px; color:var(--ink-soft); margin:0; line-height:1.4;}
+  .step .time{position:absolute; top:14px; right:12px; font-size:10.5px; color:var(--ink-soft); font-weight:600;}
+  .roles-row{display:flex; gap:10px; margin-top:12px;}
+  .role{flex:1; text-align:center; padding:10px 7px; border:1px solid var(--line); background:var(--card);}
+  .role .icon{font-size:18px; margin-bottom:4px;}
+  .role h4{font-size:10.5px; font-weight:700; margin:0 0 3px; color:var(--peacock-deep);}
+  .role p{font-size:9.6px; color:var(--ink-soft); margin:0; line-height:1.3;}
+
+  /* Session-flow timeline */
+  .tl-bar{display:flex; height:64px; border:1px solid var(--line);}
+  .tl-seg{position:relative; display:flex; flex-direction:column; justify-content:center; padding:6px 10px; color:#fff; border-right:2px solid var(--paper);}
+  .tl-seg:last-child{border-right:none;}
+  .tl-seg .lbl{font-size:11px; font-weight:700;}
+  .tl-seg .mins{font-size:9.5px; opacity:.85;}
+  .tl-note{margin-top:6px; font-size:10.5px; color:var(--ink-soft); text-align:right;}
+  .job-ring{margin-top:12px; padding:12px 14px 10px; background:var(--card); border:1px solid var(--line); position:relative;}
+  .job-ring .caption{font-size:11px; font-weight:700; color:var(--rani); margin-bottom:8px;}
+  .job-row{display:flex; align-items:center; gap:6px;}
+  .job{flex:1; text-align:center; padding:8px 4px; background:var(--paper); border:1px solid var(--line);}
+  .job .icon{font-size:16px;}
+  .job h5{font-size:10px; margin:3px 0 2px; font-weight:700; color:var(--peacock-deep);}
+  .job p{font-size:9px; color:var(--ink-soft); margin:0; line-height:1.25;}
+  .job-arrow{font-size:14px; color:var(--marigold-deep);}
+  .page-num{position:absolute; bottom:20px; right:30px; font-size:10px; color:var(--ink-soft); letter-spacing:.08em;}
+  .footer-strip{position:absolute; left:0; right:0; bottom:0; height:8px; background: repeating-linear-gradient(90deg, var(--rani) 0 18px, var(--marigold) 18px 36px, var(--peacock) 36px 54px); opacity:.85;}
+
+  /* PAGE 2 specific */
+  .roadmap{display:flex; gap:0; margin-top:20px; position:relative;}
+  .rm-node{flex:1; position:relative; padding:0 10px;}
+  .rm-line{position:absolute; top:11px; left:0; right:0; height:2px; background:var(--line); z-index:0;}
+  .rm-dot{width:24px; height:24px; border-radius:50%; background:var(--paper); border:3px solid var(--peacock); position:relative; z-index:1; margin:0 auto 10px;}
+  .rm-node:nth-child(2) .rm-dot{border-color:var(--marigold-deep);}
+  .rm-node:nth-child(3) .rm-dot{border-color:var(--rani);}
+  .rm-card{background:var(--card); border:1px solid var(--line); padding:12px 13px; min-height:150px;}
+  .rm-card .stage{font-size:10.5px; font-weight:700; letter-spacing:.03em; color:var(--rani); margin-bottom:4px;}
+  .rm-card h4{font-family:'Fraunces',serif; font-size:16px; margin:0 0 8px; color:var(--peacock-deep);}
+  .rm-card ul{margin:0; padding-left:16px; font-size:11px; color:var(--ink-soft); line-height:1.55;}
+  .rm-card li{margin-bottom:3px;}
+
+  .quad-wrap{display:flex; gap:26px; margin-top:16px; align-items:flex-start;}
+  .quad-wrap svg{flex-shrink:0;}
+  .quad-legend{font-size:11.5px; color:var(--ink-soft); line-height:1.7; padding-top:6px;}
+  .quad-legend .dot{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px;}
+
+  .pillars{display:flex; gap:14px; margin-top:14px;}
+  .pillar{flex:1; background:var(--peacock-deep); color:#F5EEDC; padding:14px 14px; text-align:center;}
+  .pillar h4{font-size:12px; margin:0 0 4px; font-family:'Work Sans',sans-serif; font-weight:700;}
+  .pillar p{font-size:10.5px; margin:0; opacity:.9; line-height:1.4;}
+
+  .cta-bar{margin-top:22px; padding:16px 20px; background:var(--marigold); display:flex; justify-content:space-between; align-items:center;}
+  .cta-bar h3{color:var(--peacock-deep); font-size:16px;}
+  .cta-bar p{margin:2px 0 0; font-size:11.5px; color:var(--peacock-deep); opacity:.85;}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="kicker">HERITAGE LANGUAGE · SPOKEN FLUENCY · AGES 6–14</div>
+  <div class="hero">
+    <div>
+      <span class="gur">ਗੱਪ ਸ਼ੱਪ</span>
+      <h1>Gup Shup</h1>
+    </div>
+    <div class="tagline">Kids build real Punjabi fluency by talking — in small groups of friends they already know, for 15 minutes at a time.</div>
+  </div>
+
+  <div class="section">
+    <h2>The problem isn't vocabulary. It's peer-shame.</h2>
+    <p class="lede">Most diaspora kids understand Punjabi and will speak it with parents or grandparents. Almost none will speak it with other kids. Duolingo-style apps drill words a child already half-knows — they don't touch the actual barrier, which is social, not linguistic.</p>
+    <div class="pullquote">Kids don't need another app that teaches them words.<br>They need a room where speaking Punjabi <span>with their friends</span> is normal.</div>
+  </div>
+
+  <div class="section">
+    <h2>Anatomy of a session — 15 minutes, invite-only</h2>
+    <div class="tl-bar">
+      <div class="tl-seg" style="flex-grow:2; background:var(--peacock);"><span class="lbl">Opening ritual</span><span class="mins">2 min</span></div>
+      <div class="tl-seg" style="flex-grow:9; background:var(--marigold-deep);"><span class="lbl">Topic rounds</span><span class="mins">9 min — 4 kids, ~2 min each</span></div>
+      <div class="tl-seg" style="flex-grow:2; background:var(--rani);"><span class="lbl">Group finale</span><span class="mins">2 min</span></div>
+      <div class="tl-seg" style="flex-grow:2; background:var(--peacock-deep);"><span class="lbl">Closing ritual</span><span class="mins">2 min</span></div>
+    </div>
+    <p class="tl-note">Same chant opens and closes every session — no improvising, no performance pressure. Private feedback note sent to each kid afterward.</p>
+
+    <div class="job-ring">
+      <div class="caption">INSIDE THE TOPIC ROUNDS — every kid has a job, roles rotate each round</div>
+      <div class="job-row">
+        <div class="job"><div class="icon">🗣️</div><h5>Speaker</h5><p>Talks for their turn, using the topic card</p></div>
+        <div class="job-arrow">→</div>
+        <div class="job"><div class="icon">👀</div><h5>Spotter</h5><p>Listens for a target word, signals when heard</p></div>
+        <div class="job-arrow">→</div>
+        <div class="job"><div class="icon">🔢</div><h5>Counter</h5><p>Tracks the group's shared point jar</p></div>
+        <div class="job-arrow">→</div>
+        <div class="job"><div class="icon">💡</div><h5>Word Helper</h5><p>Only one allowed to offer a word if stuck</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>The adult host isn't a limitation — it's the trust layer</h2>
+    <p class="lede" style="margin-top:0;">Live audio between kids needs a real person in the room at launch — but as referee of a shared game, not a monitor watching for mistakes.</p>
+    <div class="roles-row">
+      <div class="role"><div class="icon">🛡️</div><h4>Safety</h4><p>Always-on responsibility for every kid in the room. Human, permanently.</p></div>
+      <div class="role"><div class="icon">🎙️</div><h4>Facilitation</h4><p>Keeps energy up, unsticks a quiet kid, runs the timer.</p></div>
+      <div class="role"><div class="icon">💬</div><h4>Reflect, don't correct</h4><p>Models the right word back in conversation — never flags a mistake.</p></div>
+      <div class="role"><div class="icon">❤️</div><h4>Warmth</h4><p>Feels like a family activity, not an evaluation.</p></div>
+    </div>
+  </div>
+
+  <div class="page-num">01 / GUP SHUP PITCH</div>
+  <div class="footer-strip"></div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="kicker">ROADMAP</div>
+  <h2 style="font-size:24px; margin-top:4px;">MVP → Iteration → North Star</h2>
+
+  <div class="roadmap">
+    <div class="rm-line"></div>
+    <div class="rm-node">
+      <div class="rm-dot"></div>
+      <div class="rm-card">
+        <div class="stage">NOW · MVP</div>
+        <h4>Prove kids want this</h4>
+        <ul>
+          <li>Invite-only pods of 3–5 kids families already know</li>
+          <li>Video call + human host, printed/digital topic cards</li>
+          <li>Manual effort-based badges, no app build required</li>
+          <li>Pilot with families + one Punjabi school or Gurdwara class</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rm-node">
+      <div class="rm-dot"></div>
+      <div class="rm-card">
+        <div class="stage">NEXT · ITERATION</div>
+        <h4>Make it a product</h4>
+        <ul>
+          <li>Native app: scheduling, timer, live badges, streaks</li>
+          <li>AI drafts topic cards and post-session feedback</li>
+          <li>AI flags language slips for the host to nudge — not autonomous</li>
+          <li>Cohorts get names/identity — "their" recurring group</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rm-node">
+      <div class="rm-dot"></div>
+      <div class="rm-card">
+        <div class="stage">LATER · NORTH STAR</div>
+        <h4>Scale trust, not just tech</h4>
+        <ul>
+          <li>AI co-host handles live nudges; adult shifts to spot-checking</li>
+          <li>Community/school marketplace of vetted hosts</li>
+          <li>Kids run their own recurring "shows" with friends</li>
+          <li>Expand beyond Punjabi to other under-served mother tongues</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Why this isn't Duolingo, and isn't Toastmasters</h2>
+    <div class="quad-wrap">
+      <svg width="330" height="260" viewBox="0 0 330 260">
+        <line x1="30" y1="20" x2="30" y2="230" stroke="#C9BB9C" stroke-width="1.5"/>
+        <line x1="30" y1="230" x2="310" y2="230" stroke="#C9BB9C" stroke-width="1.5"/>
+        <text x="30" y="14" font-family="Work Sans" font-size="10" fill="#5B5142" text-anchor="middle">high pressure</text>
+        <text x="30" y="248" font-family="Work Sans" font-size="10" fill="#5B5142" text-anchor="middle">low pressure</text>
+        <text x="30" y="128" font-family="Work Sans" font-size="10" fill="#5B5142" text-anchor="middle" transform="rotate(-90 30 128)">performance ↕</text>
+        <text x="65" y="242" font-family="Work Sans" font-size="10" fill="#5B5142">solo</text>
+        <text x="290" y="242" font-family="Work Sans" font-size="10" fill="#5B5142" text-anchor="end">social</text>
+
+        <!-- Duolingo: solo, low pressure -->
+        <circle cx="80" cy="190" r="7" fill="#8B8577"/>
+        <text x="93" y="194" font-family="Work Sans" font-size="11" fill="#241C14">Duolingo</text>
+
+        <!-- Toastmasters: social, high pressure -->
+        <circle cx="270" cy="55" r="7" fill="#8B8577"/>
+        <text x="255" y="45" font-family="Work Sans" font-size="11" fill="#241C14" text-anchor="end">Toastmasters</text>
+
+        <!-- Gup Shup: social, low pressure -->
+        <circle cx="270" cy="195" r="9" fill="#B23A63"/>
+        <text x="255" y="212" font-family="Fraunces" font-weight="700" font-size="13" fill="#B23A63" text-anchor="end">Gup Shup</text>
+      </svg>
+      <div class="quad-legend">
+        <div><span class="dot" style="background:#8B8577"></span><b>Duolingo</b> — solo drills. No pressure, but no one to talk to.</div><br>
+        <div><span class="dot" style="background:#8B8577"></span><b>Toastmasters / debate</b> — social, but built to train performance under pressure. Assumes you're already fluent.</div><br>
+        <div><span class="dot" style="background:#B23A63"></span><b>Gup Shup</b> — social <i>and</i> low-stakes. A playdate where Punjabi is the shared game, not a craft being judged.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Safety model at launch</h2>
+    <div class="pillars">
+      <div class="pillar"><h4>Invite-only pods</h4><p>Kids only ever talk to peers their family already knows. No stranger matching.</p></div>
+      <div class="pillar"><h4>Adult always present</h4><p>A real host runs every session live — safety, energy, and language nudges.</p></div>
+      <div class="pillar"><h4>Effort over accuracy</h4><p>Attempts are rewarded before correctness. English fallback is never punished.</p></div>
+    </div>
+  </div>
+
+  <div class="cta-bar">
+    <div>
+      <h3>The ask</h3>
+      <p>Pilot Gup Shup this season with 3–5 families and one community Punjabi class.</p>
+    </div>
+  </div>
+
+  <div class="page-num">02 / GUP SHUP PITCH</div>
+  <div class="footer-strip"></div>
+</div>
+
+</body>
+</html>
