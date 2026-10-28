@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sikhi Agent — the bird's eye view</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14213D;--node:#1B2C4D;--paper:#F3EEE3;--slate:#A9B6CC;--saf:#E8973A;--teal:#2B7A6B;--blue:#5B6FA0}
+html,body{margin:0;background:var(--bg);color:var(--paper);font-family:'Work Sans',sans-serif}
+.wrap{max-width:1400px;margin:0 auto;padding:2.5rem 1rem 3rem}
+h1{font-family:Fraunces,serif;text-align:center;font-size:clamp(1.4rem,3vw,1.9rem);margin:0 0 .4rem}
+p.l{text-align:center;color:var(--slate);margin:0 0 1.5rem}
+figure{margin:0;overflow-x:auto}svg{min-width:900px;width:100%;height:auto;display:block}
+svg text{font-family:'Work Sans',sans-serif;fill:var(--paper);font-size:14px}
+.h{font-family:Fraunces,serif;font-weight:600;font-size:18px}.s{fill:var(--slate)}.e{fill:var(--slate);font-size:13px;font-style:italic}
+.k{fill:var(--saf);font-size:12.5px;font-weight:600;letter-spacing:.06em}
+.n{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.5rem}
+.n div{border:1.5px solid #3A4E77;border-radius:12px;padding:.9rem 1rem;color:var(--slate);line-height:1.5;font-size:.92rem}
+.n b{display:block;color:var(--saf);margin-bottom:.2rem}
+</style></head><body><div class="wrap">
+<h1>Sikhi Agent — the bird's eye view</h1>
+<p class="l">Your sketch, with the LLM placed: it helps at the edges, but never owns the scripture.</p>
+<figure><svg viewBox="0 0 1500 560" role="img" aria-label="Prompt goes to an intent router, which picks a tool; tools read the corpus by ID; the LLM drafts from the returned records; a verifier checks quotes against the corpus before the kid sees the answer." xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#6B7FA6"/></marker>
+</defs>
+<text x="30" y="30" class="k">TEAL = DETERMINISTIC (rules, lookups)    BLUE = LLM    SAFFRON = THE KID</text>
+
+<!-- LLM row -->
+<rect x="520" y="50" width="400" height="100" rx="14" fill="#1E2A4A" stroke="#5B6FA0" stroke-width="2.5"/>
+<text x="720" y="86" text-anchor="middle" class="h">LLM</text>
+<text x="720" y="110" text-anchor="middle" class="s">writes the answer from returned records</text>
+<text x="720" y="130" text-anchor="middle" class="s">quotes are placeholders, never retyped</text>
+
+<rect x="1020" y="50" width="240" height="100" rx="14" fill="#1B2C4D" stroke="#2B7A6B" stroke-width="2"/>
+<text x="1140" y="86" text-anchor="middle" class="h">Verifier</text>
+<text x="1140" y="110" text-anchor="middle" class="s">every quote + scholar</text>
+<text x="1140" y="130" text-anchor="middle" class="s">must trace to the corpus</text>
+
+<rect x="1320" y="50" width="160" height="100" rx="14" fill="#1B2C4D" stroke="#E8973A" stroke-width="2"/>
+<text x="1400" y="92" text-anchor="middle" class="h">Answer</text>
+<text x="1400" y="116" text-anchor="middle" class="s">Gurmukhi + ang +</text>
+<text x="1400" y="134" text-anchor="middle" class="s">scholars, attributed</text>
+
+<!-- main row -->
+<rect x="30" y="240" width="170" height="90" rx="14" fill="#1B2C4D" stroke="#E8973A" stroke-width="2"/>
+<text x="115" y="278" text-anchor="middle" class="h">Prompt</text><text x="115" y="302" text-anchor="middle" class="s">a child's question</text>
+
+<rect x="260" y="225" width="260" height="120" rx="14" fill="#1B2C4D" stroke="#2B7A6B" stroke-width="2"/>
+<text x="390" y="262" text-anchor="middle" class="h">Intent router</text>
+<text x="390" y="288" text-anchor="middle" class="s">what is being asked?</text>
+<text x="390" y="308" text-anchor="middle" class="s">rules first: “pauri 5”, Gurmukhi</text>
+<text x="390" y="328" text-anchor="middle" class="s">pasted, scholar names</text>
+
+<rect x="640" y="240" width="220" height="90" rx="14" fill="#1B2C4D" stroke="#2B7A6B" stroke-width="2"/>
+<text x="750" y="278" text-anchor="middle" class="h">Tools (MCP)</text><text x="750" y="302" text-anchor="middle" class="s">read-only, typed</text>
+
+<rect x="960" y="225" width="260" height="120" rx="14" fill="#1B2C4D" stroke="#2B7A6B" stroke-width="2"/>
+<text x="1090" y="262" text-anchor="middle" class="h">Corpus</text>
+<text x="1090" y="288" text-anchor="middle" class="s">Gurmukhi text · scholar teekas</text>
+<text x="1090" y="308" text-anchor="middle" class="s">coverage manifest · concept tags</text>
+<text x="1090" y="328" text-anchor="middle" class="s">+ vector index (finds IDs only)</text>
+
+<!-- intent kinds -->
+<text x="230" y="408" class="e">three kinds of intent →</text>
+<g stroke-width="1.8" fill="#1B2C4D" stroke="#2B7A6B">
+<rect x="230" y="420" width="120" height="60" rx="10"/><rect x="362" y="420" width="120" height="60" rx="10"/><rect x="494" y="420" width="120" height="60" rx="10"/></g>
+<text x="290" y="446" text-anchor="middle" class="h" style="font-size:15px">Reference</text><text x="290" y="466" text-anchor="middle" class="s" style="font-size:12.5px">“pauri 5”, “ang 3”</text>
+<text x="422" y="446" text-anchor="middle" class="h" style="font-size:15px">Search</text><text x="422" y="466" text-anchor="middle" class="s" style="font-size:12.5px">“where is hukam?”</text>
+<text x="554" y="446" text-anchor="middle" class="h" style="font-size:15px">Meaning</text><text x="554" y="466" text-anchor="middle" class="s" style="font-size:12.5px">“explain this line”</text>
+
+<!-- arrows -->
+<g stroke="#6B7FA6" stroke-width="1.8" fill="none" marker-end="url(#a)">
+<path d="M200,285 L260,285" marker-end="url(#a)"/>
+<path d="M520,285 L640,285" marker-end="url(#a)"/>
+<path d="M860,285 L960,285" marker-end="url(#a)"/>
+<path d="M750,240 L750,150" marker-end="url(#a)"/>
+<path d="M920,100 L1020,100" marker-end="url(#a)"/>
+<path d="M1260,100 L1320,100" marker-end="url(#a)"/>
+<path d="M390,345 L390,420" marker-end="url(#a)"/>
+<path d="M614,450 L750,450 L750,332" marker-end="url(#a)"/>
+<path d="M420,225 C440,160 480,120 520,110" stroke-dasharray="6 4" marker-end="url(#a)"/>
+<path d="M1140,150 L1140,225" stroke-dasharray="6 4" marker-end="url(#a)"/>
+</g>
+<text x="580" y="274" text-anchor="middle" class="e">plan</text>
+<text x="910" y="274" text-anchor="middle" class="e">lookup by ID</text>
+<text x="762" y="200" class="e">verbatim records +</text><text x="762" y="217" class="e">who is available</text>
+<text x="930" y="88" class="e">draft</text>
+<text x="1152" y="192" class="e">checks quotes</text>
+<text x="1152" y="209" class="e">against corpus</text>
+<text x="330" y="150" class="e" text-anchor="end">only if fuzzy:</text><text x="330" y="167" class="e" text-anchor="end">LLM helps classify</text>
+<text x="762" y="395" class="e">picks the tool</text>
+</svg></figure>
+<div class="n">
+<div><b>1 · Rules decide first</b>The router handles “pauri 5”, pasted Gurmukhi and scholar names with plain rules. The LLM is asked only when intent is genuinely fuzzy.</div>
+<div><b>2 · Tools touch the corpus</b>Records come back by ID, with a note on which scholars are or aren't available. The LLM never reaches the scripture directly.</div>
+<div><b>3 · The LLM writes, the verifier checks</b>It drafts with placeholders in place of quotes. The verifier swaps in the real text, or rejects the draft.</div>
+</div>
+</div></body></html>
